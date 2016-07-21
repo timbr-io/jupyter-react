@@ -7,12 +7,12 @@ import os
 
 project_name = "jupyter_react"
 
-juno_extension_dir = os.path.join(os.path.dirname(__file__), project_name, "static")
+extension_dir = os.path.join(os.path.dirname(__file__), project_name, "static")
 
 class develop(_develop):
     def run(self):
         _develop.run(self)
-        install_nbextension(juno_extension_dir, symlink=True,
+        install_nbextension(extension_dir, symlink=True,
                             overwrite=True, user=False, destination=project_name)
         cm = ConfigManager()
         cm.update('notebook', {"load_extensions": {"jupyter_react/index": True } })
@@ -23,9 +23,9 @@ class install(_install):
         cm = ConfigManager()
         cm.update('notebook', {"load_extensions": {"jupyter_react/index": True } })
 
-setup(name='juno-magic',
+setup(name='jupyter-react',
       cmdclass={'develop': develop, 'install': install},
-      version='0.1.9',
+      version='0.0.1',
       description='React component extension for Jupyter Notebooks',
       url='https://github.com/timbr-io/jupyter-react',
       author='Chris Helm',
