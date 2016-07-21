@@ -20,7 +20,7 @@ var handle_cell = function(cell) {
 
 function register_events(Jupyter, events) {
     var cells = Jupyter.notebook.get_cells();
-    cell.forEach( cell => {
+    cells.forEach( cell => {
         handle_cell( cell );
     });
 

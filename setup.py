@@ -25,7 +25,7 @@ class install(_install):
 
 setup(name='jupyter-react',
       cmdclass={'develop': develop, 'install': install},
-      version='0.0.1',
+      version='0.0.2',
       description='React component extension for Jupyter Notebooks',
       url='https://github.com/timbr-io/jupyter-react',
       author='Chris Helm',

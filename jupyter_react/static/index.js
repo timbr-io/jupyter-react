@@ -72,7 +72,7 @@ define(function() { return /******/ (function(modules) { // webpackBootstrap
 
 	function register_events(Jupyter, events) {
 	    var cells = Jupyter.notebook.get_cells();
-	    cell.forEach(function (cell) {
+	    cells.forEach(function (cell) {
 	        handle_cell(cell);
 	    });
 
