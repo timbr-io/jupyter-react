@@ -2,7 +2,7 @@
 
 This repo actually has nothing to do with React, but rather is a base class meant for pairing up with JS based front-end UI components (see https://github.com/timbr-io/jupyter-react-js). The only thing in this module is a "Component" class. This class can be created with a "module" name that matches the name of a JS UI component and opens up a line of commuination called an "IPython Comm". Using the comm messages can be pased back and forth and property and actions can be taken as a result of UI interaction. 
 
-<img src="./resources/basic_arch.png"/>
+<img src="./resources/basic_arch.png" width=500 />
 
 ## Example
 
