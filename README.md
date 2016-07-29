@@ -34,3 +34,21 @@ display(mything)
 ```
 
 Once a component is "displayed" a message is passed over the comm to the front-end. If the front-end has registered a handler for the same `comm target\_name` then it will be called when the class is created. You can see more about how to build the front-end code here: https://github.com/timbr-io/jupyter-react-js.
+
+## Methods
+
+### open(props)
+@param props - dict of props to be passed to the front-end js when a comm is opened.
+
+Called immediately when a class is instantiated, this method opens a comm to the front-end and passes the props to the JS.
+
+### close
+Closes the comm.
+
+### send(data)
+@param data - dict of data to send over as a message comm
+
+Sends a message over the comm.
+
+### on\_msg(callback)
+@param callback - method to be called when a message is received over the comm
