@@ -3,7 +3,14 @@ from IPython.display import display, Javascript
 from IPython.core.getipython import get_ipython
 from traitlets import Instance, List, observe
 from traitlets.config import LoggingConfigurable
+import uuid
 
+
+# A call few new comms that are created via the front-end (on page re-fresh)
+def handle_comm_opened(comm, msg):
+    module_name = msg['content']['data']['module']
+    comm.send({'method':'display'})
+    
 
 # Taken from ipywidgets callback pattern, cause its nice
 class CallbackDispatcher(LoggingConfigurable):
@@ -33,17 +40,29 @@ class CallbackDispatcher(LoggingConfigurable):
 
 
 class Component(LoggingConfigurable):
+  _module = None
   comm = Instance('ipykernel.comm.Comm', allow_none=True)
   _msg_callbacks = Instance(CallbackDispatcher, ())
 
-  def __init__(self, target_name='jupyter.react', props={}):
+  @property
+  def module(self):
+      if self._module is not None:
+          return self._module
+      else:
+          return self.__class__.__name__
+
+  def __init__(self, target_name='jupyter.react', props={}, comm=None):
       self.target_name = target_name
       self.props = props
-      self.open(props)
+      if comm is None:
+        self.open(props)
+      else:
+        self.comm = comm
 
   def open(self, props):
       props['module'] = self.module
       args = dict(target_name=self.target_name, data=props)
+      args['comm_id'] = 'jupyter_react.{}.{}'.format( uuid.uuid4(), props['module'] )
       self.comm = Comm(**args)
 
   @observe('comm')
