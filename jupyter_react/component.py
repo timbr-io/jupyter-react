@@ -5,13 +5,6 @@ from traitlets import Instance, List, observe
 from traitlets.config import LoggingConfigurable
 import uuid
 
-
-# A call few new comms that are created via the front-end (on page re-fresh)
-def handle_comm_opened(comm, msg):
-    module_name = msg['content']['data']['module']
-    comm.send({'method':'display'})
-    
-
 # Taken from ipywidgets callback pattern, cause its nice
 class CallbackDispatcher(LoggingConfigurable):
     callbacks = List()
@@ -40,8 +33,8 @@ class CallbackDispatcher(LoggingConfigurable):
 
 
 class Component(LoggingConfigurable):
-  _module = None
   comm = Instance('ipykernel.comm.Comm', allow_none=True)
+  _module = None
   _msg_callbacks = Instance(CallbackDispatcher, ())
 
   @property
