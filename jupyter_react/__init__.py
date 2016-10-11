@@ -1,4 +1,4 @@
-from component import *
+from .component import *
 
 def _jupyter_nbextension_paths():
     return [{

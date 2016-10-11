@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='jupyter-react',
-      version='0.1.2',
+      version='0.1.3',
       description='React component extension for Jupyter Notebooks',
       url='https://github.com/timbr-io/jupyter-react',
       author='Chris Helm',
