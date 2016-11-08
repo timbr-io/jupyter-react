@@ -65,8 +65,6 @@ class Component(LoggingConfigurable):
           return
       self.comm.on_msg(self._handle_msg)
 
-  def _handle_comm_close(self):
-  
   def __del__(self):
       self.close()
 
