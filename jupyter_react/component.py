@@ -48,9 +48,10 @@ class Component(LoggingConfigurable):
       self.target_name = target_name
       self.props = props
       if comm is None:
-        self.open(props)
+          self.open(props)
       else:
-        self.comm = comm
+          self.comm = comm
+      self.comm.on_close(self.close)
 
   def open(self, props):
       props['module'] = self.module
@@ -63,6 +64,8 @@ class Component(LoggingConfigurable):
       if change['new'] is None:
           return
       self.comm.on_msg(self._handle_msg)
+
+  def _handle_comm_close(self):
   
   def __del__(self):
       self.close()
