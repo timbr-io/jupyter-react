@@ -66,11 +66,11 @@ class Component(LoggingConfigurable):
       self.comm.on_msg(self._handle_msg)
 
   def __del__(self):
-      self.close()
+      self.comm.close()
+      self.close(None)
 
-  def close(self):
+  def close(self, msg):
       if self.comm is not None:
-          self.comm.close()
           self.comm = None
           self._ipython_display_ = None
 
